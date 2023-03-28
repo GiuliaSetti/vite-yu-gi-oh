@@ -32,12 +32,16 @@ export default {
     @use "../scss/variables" as *;
 
     header{
+        width: 100vw;
         background-color: $background;
 
-        padding: 1rem;
+        padding: 0.7rem;
         color: $text-color;
 
         text-align: center;
+
+        position: fixed;
+        top: 0;
 
     }
 

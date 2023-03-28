@@ -23,14 +23,12 @@ export default {
 @use "../scss/variables" as *;
 
   footer{
-    width: 100vw;
     background-color: $background;
     color: $text-color;
     text-align: center;
     padding: 0.5rem;
 
-    position: fixed;
-    bottom: 0;
+   
   }
 
 
