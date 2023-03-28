@@ -46,7 +46,7 @@
 
     .cards_container{
 
-        padding: 2rem;
+        padding: 6rem 0;
         display: flex;
 
         max-width: 1200px;
