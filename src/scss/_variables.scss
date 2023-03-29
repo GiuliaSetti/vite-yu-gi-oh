@@ -1,3 +1,8 @@
 $background: #E9B200;
 
 $text-color:white;
+
+@mixin border() {
+    border-radius: 30px;
+    padding: 1rem;
+}

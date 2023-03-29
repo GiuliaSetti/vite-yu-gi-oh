@@ -1,35 +1,69 @@
 <script>
+
+    // store
     import { store } from "../store.js";
+    // axios
     import axios from 'axios';
+    // card
     import CardItem from "./CardItem.vue";
+    // barra di ricerca
+    import AppSearchBar from './AppSearchBar.vue'
     export default {
     name: 'AppMain',
     data() {
-        return {
+            return {
 
-            store,
-        }
-    },
-    components: {
-        CardItem,
-    },
-    created() {
+                store,
+            }
+        },
+        components: {
+            CardItem,
+            AppSearchBar,
+        },
 
-            axios.get(this.store.APIcall).then((res)=>{
-            console.log(res.data.data);
-            this.store.cards = res.data.data;
+        created() {
 
-        });
+                axios.get(this.store.APIcall).then((res)=>{
+                console.log(res.data.data);
+                this.store.cards = res.data.data;
+
+            });
+            
+        },
         
-    }
+        methods: {
+                search() {
+                 
+                    let APInewString = this.store.APIcall + '&fname=' + this.store.cardName;
+                    console.log(APInewString);
+
+                    axios.get(APInewString).then((res) => {
+
+                        console.log(res.data.data);
+                        this.store.cards = res.data.data;
+                        this.store.cardName = '';
+                        
+              
+                });
+                        
+                
+            }
+        }
     }
 
 </script>
   
 <template>
 
+    
+
     <div id="main_container">
-        <div v-if="store.cards.length == 50" class="cards_container">
+
+        <!-- searchbar -->
+        <AppSearchBar  @searchCard="search()"></AppSearchBar>
+
+        <!-- container carte -->
+        <div v-if="store.cards.length > 0" class="cards_container">
             <CardItem v-for="card in store.cards" :cards="card"></CardItem>
         </div>
 
@@ -44,9 +78,12 @@
 
 #main_container{
   background-color: #FCECAE;
+  
+    padding-top: 90px;
 
 
     .cards_container{
+
 
         padding: 6rem 0;
         display: flex;
