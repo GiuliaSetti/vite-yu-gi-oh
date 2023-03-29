@@ -9,5 +9,9 @@ export const store = reactive({
 
   cardName: "",
 
+  cardType:"",
+
+  cardCount: 0,
+
 });
 

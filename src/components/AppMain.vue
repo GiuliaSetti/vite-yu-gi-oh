@@ -8,6 +8,9 @@
     import CardItem from "./CardItem.vue";
     // barra di ricerca
     import AppSearchBar from './AppSearchBar.vue'
+    // totale delle carte trovate
+    import AppCardCount from './AppCardCount.vue'
+
     export default {
     name: 'AppMain',
     data() {
@@ -19,6 +22,7 @@
         components: {
             CardItem,
             AppSearchBar,
+            AppCardCount,
         },
 
         created() {
@@ -34,17 +38,28 @@
         methods: {
                 search() {
                  
-                    let APInewString = this.store.APIcall + '&fname=' + this.store.cardName;
-                    console.log(APInewString);
+                    let APInewString = `${this.store.APIcall}`;
+
+                    if (this.store.cardName != '') {
+
+                        APInewString += `&fname=${this.store.cardName}`;
+
+                    }
+
+                    if (this.store.cardType != '') {
+
+                        APInewString += `&type=${this.store.cardType}`;
+
+                    }
 
                     axios.get(APInewString).then((res) => {
-
                         console.log(res.data.data);
                         this.store.cards = res.data.data;
-                        this.store.cardName = '';
-                        
+
+                        this.store.cardCount= this.store.cards.length;
+                    });
               
-                });
+               
                         
                 
             }
@@ -61,6 +76,8 @@
 
         <!-- searchbar -->
         <AppSearchBar  @searchCard="search()"></AppSearchBar>
+
+        <AppCardCount></AppCardCount>
 
         <!-- container carte -->
         <div v-if="store.cards.length > 0" class="cards_container">
