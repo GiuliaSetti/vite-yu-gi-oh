@@ -25,6 +25,11 @@ export default {
       <h6>Amazon Price</h6>
       <div>€ {{ cards.card_prices[index].amazon_price }}</div>
     </div>
+
+    <div class="card_name">
+      <div class=" name">{{ cards.name }}</div>
+      <div class="type">{{ 'Type: ' + cards.type }}</div>
+    </div>
   
 
    
@@ -47,7 +52,7 @@ export default {
 
       border-radius: 10px;
 
-      box-shadow: 1px 1px 5px black;
+      box-shadow: 5px 4px 6px black;
 
       img{
         width: 100%;
@@ -90,6 +95,20 @@ export default {
       display: none;
 
     
+    }
+
+    .card_name{
+      text-align: center;
+      margin-top: 10px;
+      padding: 10px;
+      color: purple;
+      font-weight: bold;
+      font-size: 13px;
+
+      border: 1px solid purple;
+      border-radius: 20px;
+      background-color: $background;
+      box-shadow: 1px 1px 3px black;
     }
 
 

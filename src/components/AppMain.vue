@@ -14,11 +14,13 @@
         CardItem,
     },
     created() {
-            axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0').then((res) => {
-            console.log(res.data.data);
 
+            axios.get(this.store.APIcall).then((res)=>{
+            console.log(res.data.data);
             this.store.cards = res.data.data;
+
         });
+        
     }
     }
 
@@ -72,11 +74,4 @@
 
 }
 
-
-
-    
-
-
-
- 
 </style>
